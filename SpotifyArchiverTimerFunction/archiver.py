@@ -12,7 +12,7 @@ class Archiver:
     # ceate a new playlist with the name
     def createNewPlaylist(self, playlistName):
         newPlaylist = self.spotipyClass.user_playlist_create(
-            user=SPOTIFY_USERNAME, name=playlistName, public=CREATE_PUBLIC_PLAYLISTS)
+            user=SPOTIFY_USERNAME, name=playlistName, public=True)
         return newPlaylist['id']
 
     # return all user playlists

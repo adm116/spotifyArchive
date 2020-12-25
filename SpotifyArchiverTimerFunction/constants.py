@@ -3,9 +3,6 @@ import os
 # spotify security scopes
 SCOPE = 'user-library-read playlist-read-private playlist-modify-private playlist-modify-public'
 
-# whether to create new playlists as public
-CREATE_PUBLIC_PLAYLISTS = bool(os.environ['CREATE_PUBLIC_PLAYLISTS'])
-
 # spotify constraints
 LIKED_TRACKS_MAX = 20
 PLAYLISTS_REQUEST_MAX = 50
