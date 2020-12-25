@@ -139,17 +139,18 @@ def removeExistingTrackIds(existingTrackIdsInPlaylist, trackIds):
 
     return toReturn
 
-while True:
-    token = getToken()
-    spotipyClass = createSpotipyClass(token)
+if __name__ == "__main__":
+    while True:
+        token = getToken()
+        spotipyClass = createSpotipyClass(token)
 
-    trackTimeObjects = getTracksToAdd(spotipyClass)
-    playlistToTracksMap = getPlaylistMapping(trackTimeObjects)
+        trackTimeObjects = getTracksToAdd(spotipyClass)
+        playlistToTracksMap = getPlaylistMapping(trackTimeObjects)
 
-    for playlistName, trackIds in playlistToTracksMap.items():
-        playlistId = getPlaylistToAddTo(playlistName, spotipyClass)
-        existingTrackIdsInPlaylist = set(getExistingTrackIdsInPlaylist(playlistId, spotipyClass))
-        trackIdsToAdd = removeExistingTrackIds(existingTrackIdsInPlaylist, trackIds)
-        addTracksToPlaylist(playlistId, trackIdsToAdd, spotipyClass)
+        for playlistName, trackIds in playlistToTracksMap.items():
+            playlistId = getPlaylistToAddTo(playlistName, spotipyClass)
+            existingTrackIdsInPlaylist = set(getExistingTrackIdsInPlaylist(playlistId, spotipyClass))
+            trackIdsToAdd = removeExistingTrackIds(existingTrackIdsInPlaylist, trackIds)
+            addTracksToPlaylist(playlistId, trackIdsToAdd, spotipyClass)
 
-    time.sleep(SLEEP_TIME)
+        time.sleep(SLEEP_TIME)
