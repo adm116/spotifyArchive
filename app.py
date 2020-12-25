@@ -4,8 +4,6 @@ from datetime import datetime, timedelta
 from constants import *
 from collections import defaultdict
 
-import time
-
 # ceate a new playlist with the name
 def createNewPlaylist(playlistName, spotipyClass):
     newPlaylist = spotipyClass.user_playlist_create(
@@ -139,18 +137,14 @@ def removeExistingTrackIds(existingTrackIdsInPlaylist, trackIds):
 
     return toReturn
 
-if __name__ == "__main__":
-    while True:
-        token = getToken()
-        spotipyClass = createSpotipyClass(token)
+token = getToken()
+spotipyClass = createSpotipyClass(token)
 
-        trackTimeObjects = getTracksToAdd(spotipyClass)
-        playlistToTracksMap = getPlaylistMapping(trackTimeObjects)
+trackTimeObjects = getTracksToAdd(spotipyClass)
+playlistToTracksMap = getPlaylistMapping(trackTimeObjects)
 
-        for playlistName, trackIds in playlistToTracksMap.items():
-            playlistId = getPlaylistToAddTo(playlistName, spotipyClass)
-            existingTrackIdsInPlaylist = set(getExistingTrackIdsInPlaylist(playlistId, spotipyClass))
-            trackIdsToAdd = removeExistingTrackIds(existingTrackIdsInPlaylist, trackIds)
-            addTracksToPlaylist(playlistId, trackIdsToAdd, spotipyClass)
-
-        time.sleep(SLEEP_TIME)
+for playlistName, trackIds in playlistToTracksMap.items():
+    playlistId = getPlaylistToAddTo(playlistName, spotipyClass)
+    existingTrackIdsInPlaylist = set(getExistingTrackIdsInPlaylist(playlistId, spotipyClass))
+    trackIdsToAdd = removeExistingTrackIds(existingTrackIdsInPlaylist, trackIds)
+    addTracksToPlaylist(playlistId, trackIdsToAdd, spotipyClass)
