@@ -6,10 +6,6 @@ SCOPE = 'user-library-read playlist-read-private playlist-modify-private playlis
 # whether to create new playlists as public
 CREATE_PUBLIC_PLAYLISTS = bool(os.environ['CREATE_PUBLIC_PLAYLISTS'])
 
-# Server-side Parameters
-PORT = os.environ['PORT']
-SLEEP_TIME = int(os.environ['SLEEP_TIME'])
-
 # spotify constraints
 LIKED_TRACKS_MAX = 20
 PLAYLISTS_REQUEST_MAX = 50
